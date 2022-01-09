@@ -1,5 +1,12 @@
-# TODO
-A Simple ToDo List with Delete/Complete , Edit the task features Using Flask for Backend
+# TASK-MANAGER
+User can create an account and track their day to day tasks using this webapp
 <br><br>
 
-<img src='img/tdss.JPG' width='450'>
+<img src='img/signup.png' width='550'>
+<img src='img/login.png' width='550'>
+<img src='img/home.png' width='550'>
+
+
+
+
+

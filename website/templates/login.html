@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
+%}
+
+<section class="w3l-hotair-form">
+        <h1>Task Manager</h1>
+        <div class="container">
+            <!-- /form -->
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="content-wthree">
+                        <h2>Log In</h2>
+                            <form method="POST">
+                                <input
+                                      type="email"
+                                      class="text"
+                                      id="email"
+                                      name="email"
+                                      placeholder="Enter email"
+                                    />
+                                <input
+                                      type="password"
+                                      class="password"
+                                      id="password"
+                                      name="password"
+                                      placeholder="Enter password"
+                                />
+                                  <button type="submit" class="btn">Login</button>
+                            </form>
+
+                        <p class="account">Don't have an account? <a href="/sign-up">Register</a></p>
+                    </div>
+                    <div class="w3l_form align-self">
+                        <div class="left_grid_info">
+                            <img src= "{{url_for('static', filename= '1.png')}}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

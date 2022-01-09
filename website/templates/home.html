@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+
+<div class="row d-flex justify-content-center container-box">
+    <div class="col-md-8">
+        <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="fa fa-tasks"></i>&nbsp;Task Lists</div>
+            </div>
+            <div class="scroll-area-sm">
+                <perfect-scrollbar class="ps-show-limits">
+                    <div style="position: static;" class="ps ps--active-y">
+                        <div class="ps-content">
+                            <ul class=" list-group list-group-flush">
+                                {% for note in user.notes %}
+                                <li class="list-group-item">
+                                    <div class="todo-indicator bg-info"></div>
+                                    <div class="widget-content p-0">
+                                        <div class="widget-content-wrapper">
+
+                                            <div class="widget-content-left">
+                                                <div class="widget-heading">{{ note.data }}</div>
+                                                <div class="widget-heading">{{ note.date }}</div>
+
+                                            </div>
+                                            <div class="widget-content-right mr-2">
+                                                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                              {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </perfect-scrollbar>
+            </div>
+                        <form method="POST">
+
+                            <input
+                                      type="input"
+                                      class="text-input"
+                                      id="text-input"
+                                      name="note"
+                                      placeholder="Enter Task"
+                                      required
+                                    />
+
+                              <input type="datetime-local" class="text-input"
+                                       name="task-deadline"
+                                        />
+                              <button type="submit" class="add-btn">Add Task</button>
+                       </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
