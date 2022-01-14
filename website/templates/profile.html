@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+
+
+<form method="POST">
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <span class="font-weight-bold">{{user.full_name}}</span>
+                <span class="text-black-50">{{user.username}}</span>
+                <span> </span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">User Profile</h4>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" name="name" value={{user.full_name}} placeholder="Full name"></div>
+                    <div class="col-md-6"><label class="labels">Username</label><input type="text" class="form-control" name="uname" value={{user.username}} placeholder="username" readonly></div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">City</label><input type="text" class="form-control" name="city" placeholder="City" value={{user.profiles[0].city}}></div>
+                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" name="country" placeholder="Country" value={{user.profiles[0].country}}></div>
+                </div>
+                <div class="row mt-3">
+
+                    <div class="col-md-12"><label class="labels">Personal Website : &nbsp;</label><a href={{user.profiles[0].pwebsite}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="personal" placeholder="Enter URL" value={{user.profiles[0].pwebsite}}></div>
+                    <div class="col-md-12"><label class="labels">LinkedIn : &nbsp;</label><a href={{"https://www.linkedin.com/in/"+user.profiles[0].linkedin}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="linkedin" placeholder="LinkedIn Username" value={{user.profiles[0].linkedin}}></div>
+                    <div class="col-md-12"><label class="labels">Github :&nbsp;</label><a href={{"https://github.com/"+user.profiles[0].github}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="github" placeholder="Github Username" value={{user.profiles[0].github}}></div>
+                    <div class="col-md-12"><label class="labels">Devfolio :&nbsp;</label><a href={{"https://devfolio.co/@"+user.profiles[0].devfolio}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="devfolio" placeholder="Devfolio Username" value={{user.profiles[0].devfolio}}></div>
+
+                </div>
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Other handles</span></div><br>
+                <div class="col-md-12"><label class="labels">CODECHEF : &nbsp;</label><a href={{"https://www.codechef.com/users/"+user.profiles[0].codechef}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="codechef" placeholder="codechef" value={{user.profiles[0].codechef}}></div>
+                <div class="col-md-12"><label class="labels">CODEFORCES : &nbsp;</label><a href={{"https://codeforces.com/profile/"+user.profiles[0].codeforces}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="codeforces" placeholder="codeforces" value={{user.profiles[0].codeforces}}></div>
+                <div class="col-md-12"><label class="labels">ATCODER : &nbsp;</label><a href={{"https://atcoder.jp/users/"+user.profiles[0].atcoder}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="atcoder" placeholder="atcoder" value={{user.profiles[0].atcoder}}></div>
+                <div class="col-md-12"><label class="labels">HACKERRANK :&nbsp; </label><a href={{"https://www.hackerrank.com/"+user.profiles[0].hackerrank}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="hackerrank" placeholder="Hackerrank" value={{user.profiles[0].hackerrank}}></div>
+                <div class="col-md-12"><label class="labels">LEETCODE : &nbsp;</label><a href={{"https://leetcode.com/"+user.profiles[0].leetcode}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="leetcode" placeholder="Leetcode" value={{user.profiles[0].leetcode}}></div>
+                <div class="col-md-12"><label class="labels">HACKEREARTH : &nbsp;</label><a href={{"https://www.hackerearth.com/@"+user.profiles[0].hackerearth}} target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a><input type="text" class="form-control" name="hackerearth" placeholder="HackerEarth" value={{user.profiles[0].hackerearth}}></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</form>
+
+
+
+
+
+<!--<form method="POST">-->
+
+<!--                            <input-->
+<!--                              type="email"-->
+
+<!--                              name="email"-->
+<!--                              value={{user.email}}-->
+<!--                            />-->
+<!--                            <input-->
+<!--                              type="text"-->
+
+<!--                              name="uname"-->
+<!--                              value={{user.username}}-->
+<!--                            />-->
+
+
+<!--                            <input-->
+<!--                              type="text"-->
+
+<!--                              name="firstName"-->
+<!--                              value={{user.full_name}}-->
+<!--                            />-->
+
+
+<!--                            <input-->
+<!--                              type="password"-->
+
+<!--                              name="password1"-->
+<!--                              placeholder="New Password"-->
+<!--                            />-->
+
+
+
+<!--                          <button type="submit" class="btn">Update</button>-->
+<!--                      </form>-->
+{% endblock %}
