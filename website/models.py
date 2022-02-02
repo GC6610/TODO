@@ -25,6 +25,16 @@ class Profiles(db.Model):
     country = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200))
+    content = db.Column(db.String(10000))
+    type= db.Column(db.String(200))
+    date = db.Column(db.String(30))
+    additionalinfo = db.Column(db.String(30))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -33,4 +43,5 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(150))
     notes = db.relationship('Note')
     profiles = db.relationship('Profiles')
+    posts = db.relationship('Posts')
 

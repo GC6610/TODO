@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note,User,Profiles
+from .models import Note,User,Profiles,Posts
 from . import db
 import json
 from datetime import datetime, timedelta
@@ -120,6 +120,48 @@ def profile():
     db.session.commit()
 
     return render_template("profile.html", user=current_user)
+
+
+@views.route('/inputpost', methods=['GET','POST'])
+@login_required
+def inputpost():
+    if request.method=='POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        type=request.form.get('type')
+        add_info=request.form.get('add_info')
+        present=datetime.now()
+        date=present.strftime("%d-%m-%Y")
+       
+
+        post = Posts(title=title,content=content,type=type,additionalinfo=add_info,date=date,user_id=current_user.id)
+        db.session.add(post)
+        db.session.commit()
+        return render_template("postinput.html", user=current_user)
+    return render_template("postinput.html", user=current_user)
+
+@views.route('/buyorsell', methods=['GET'])
+@login_required
+def buyorsell():
+   
+    posts = Posts.query.filter_by(type="BuyorSell").all()
+    return render_template("posts.html", posts=posts)
+
+
+@views.route('/lostandfound', methods=['GET'])
+@login_required
+def lostandfound():
+
+    posts = Posts.query.filter_by(type="LostandFound").all()
+    return render_template("posts.html", posts=posts)
+
+
+@views.route('/others', methods=['GET'])
+@login_required
+def otherposts():
+
+    posts = Posts.query.filter_by(type="Others").all()
+    return render_template("posts.html", posts=posts)
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():

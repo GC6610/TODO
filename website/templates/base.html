@@ -9,6 +9,7 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -17,6 +18,7 @@
     <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!--/Style-CSS -->
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
     <!--//Style-CSS -->
 
     <link rel="stylesheet" href="{{url_for('static', filename='font-awesome.min.css')}}"  type="text/css" media="all">
@@ -39,6 +41,7 @@
             <a class="nav-item nav-link" id="profile" href="/profile">{{user.username}}</a>
             <a class="nav-item nav-link" id="tasks" href="/tasks">Tasks</a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <a class="nav-item nav-link" id="inputpost" href="/inputpost">Create New</a>
 
         </div>
       </div>

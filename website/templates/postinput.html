@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Create a Post{% endblock %}
+{% block content %}
+
+
+
+
+<div class="form-style-5">
+    <form method="POST">
+        <fieldset>
+            <center><legend><b> NEW POST</b></legend></center>
+            <label>Title:</label>
+            <input type="text" name="title" placeholder="Example: Want to sell my Bicycle">
+            <label>Type:</label>
+            
+
+
+            <select name="type">
+                <option  value="BuyorSell">BuyorSell</option>
+                <option  value="LostandFound">LostandFound</option>
+                <option  value="Others">Other</option>
+            </select>
+
+
+
+            <label>Description:</label>
+            <textarea name="content" rows=3 placeholder="Description"></textarea>
+            
+        
+            
+            <label for="job">Additional Info:</label>
+            
+            <textarea name="add_info" rows=3 placeholder="Example : Some Secondary Contact Details"></textarea>
+            
+            <label >Image Links:</label>
+            <input type="text" name="links" placeholder="Image links if required (May be drive link)"/>
+        </fieldset>
+        <input type="submit" value="Post" />
+        
+    </form>
+</div>
+
+{% endblock %}
