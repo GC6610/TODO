@@ -4,9 +4,9 @@ from .models import Note,User,Profiles,Posts
 from . import db
 import json
 from datetime import datetime, timedelta
-
+import os
 views = Blueprint('views', __name__)
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 @views.route('/tasks', methods=['GET', 'POST'])
 @login_required
@@ -129,14 +129,19 @@ def inputpost():
         title = request.form.get('title')
         content = request.form.get('content')
         type=request.form.get('type')
-        add_info=request.form.get('add_info')
+       
+        
         present=datetime.now()
         date=present.strftime("%d-%m-%Y")
-       
+        img_link=request.form.get('links')
 
-        post = Posts(title=title,content=content,type=type,additionalinfo=add_info,date=date,user_id=current_user.id)
+           
+        
+        post = Posts(title=title,content=content,type=type,date=date,img_link=img_link,contactid=current_user.email,author=current_user.full_name,user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
+        
+
         return render_template("postinput.html", user=current_user)
     return render_template("postinput.html", user=current_user)
 
@@ -145,7 +150,7 @@ def inputpost():
 def buyorsell():
    
     posts = Posts.query.filter_by(type="BuyorSell").all()
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", det=[current_user,posts])
 
 
 @views.route('/lostandfound', methods=['GET'])
@@ -153,7 +158,7 @@ def buyorsell():
 def lostandfound():
 
     posts = Posts.query.filter_by(type="LostandFound").all()
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", det=[current_user,posts])
 
 
 @views.route('/others', methods=['GET'])
@@ -161,7 +166,7 @@ def lostandfound():
 def otherposts():
 
     posts = Posts.query.filter_by(type="Others").all()
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", det=[current_user,posts])
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():

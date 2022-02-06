@@ -31,7 +31,9 @@ class Posts(db.Model):
     content = db.Column(db.String(10000))
     type= db.Column(db.String(200))
     date = db.Column(db.String(30))
-    additionalinfo = db.Column(db.String(30))
+    author=db.Column(db.String(150))
+    img_link= db.Column(db.String(100))
+    contactid=db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 

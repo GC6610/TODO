@@ -48,6 +48,11 @@ button,
 select {
     cursor: pointer;
 }
+.drop-elem{
+    background-color: #302E2D
+    ;
+    color: #fff;
+}
 
 a {
     text-decoration: none;

@@ -2,7 +2,8 @@
 	max-width: 500px;
 	padding: 10px 20px;
 	background: #f4f7f8;
-	margin: 20px auto;
+	margin: auto;
+	margin-top:10%;
 	padding: 20px;
 	background: #f4f7f8;
 	border-radius: 4px;
@@ -65,6 +66,7 @@
 	border-radius: 15px 15px 15px 0px;
 }
 
+
 .form-style-5 input[type="submit"]
 {
 	position: relative;
@@ -84,4 +86,12 @@
 .form-style-5 input[type="submit"]:hover
 {
 	background: #5f3feb;
+}
+
+#square-btn{
+	margin-top:2%;
+	margin-left:35%;
+	margin-right:30%;
+	width:35%;
+	border-radius: 5px;
 }

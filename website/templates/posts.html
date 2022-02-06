@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
+
+<link rel="stylesheet" href="{{url_for('static', filename='post.css')}}" type="text/css" media="all" />
+<!--//Style-CSS -->
+{% endblock %} {% block title %}Posts{% endblock %} 
+
+{% block navbar %}
+    {% if det[0].is_authenticated %}
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+          
+            <a class="nav-item nav-link" id="profile" href="/profile">{{det[0].username}}</a>
+           
+            <a class="nav-item nav-link" id="tasks" href="/tasks">Tasks</a>
+            <a class="nav-item nav-link" id="inputpost" href="/inputpost">Create New</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Posts
+              </a>
+              <div class="dropdown-menu drop-elem" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item drop-elem" href="/buyorsell">BuyorSell</a>
+                <a class="dropdown-item drop-elem" href="/lostandfound">LostandFound</a>
+                <a class="dropdown-item drop-elem" href="others">Others</a>
+              </div>
+            </li>
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+
+        </div>
+      </div>
+    </nav>
+    {% endif %}
+
+    {% endblock %}
+    {% block
+        content %}
+
+    <div class="main-container">
+        {% for post in det[1][::-1] %}
+        {% if post.type=="BuyorSell" %}
+        <!-- buyandsell -->
+        <div class="cards">
+          <div class="card card-1">
+            <div class="card__icon"><i class="fa fa-shopping-cart"></i></div>
+            <p class="card__exit">{{post.date}}</p>
+            <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
+            <p class="content">{{post.content}}</p>
+            {% if post.img_link %}
+            <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
+            {% endif %}
+            <div>Posted By : {{post.author}} </div>
+            <p class="card__apply">
+              <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
+            </p>
+          </div>
+        
+        </div>
+        {% endif %}
+        {% if post.type=="LostandFound" %}
+        <!-- LostandFound -->
+        <div class="cards">
+            <div class="card card-1">
+              <div class="card__icon"><i class="fa fa-search"></i></div>
+              <p class="card__exit">{{post.date}}</p>
+              <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
+              <p class="content">{{post.content}}</p>
+              {% if post.img_link %}
+              <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
+              {% endif %}
+              <div>Posted By : {{post.author}} </div>
+              <p class="card__apply">
+                <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
+              </p>
+            </div>
+          
+          </div>
+          {% endif %}
+          {% if post.type=="Others" %}
+          <!-- Others -->
+          <div class="cards">
+            <div class="card card-1">
+              <div class="card__icon"><i class="fa fa-globe"></i></div>
+              <p class="card__exit">{{post.date}}</p>
+              <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
+              <p class="content">{{post.content}}</p>
+              {% if post.img_link %}
+              <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
+              {% endif %}
+              <div>Posted By : {{post.author}} </div>
+              <p class="card__apply">
+                <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
+              </p>
+            </div>
+          
+          </div>
+          {% endif %}
+          {% endfor %}
+      </div>
+
+    {% endblock %}    

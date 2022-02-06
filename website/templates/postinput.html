@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% block links %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
+<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
+
+<!--//Style-CSS -->
+{% endblock %}
 {% block title %}Create a Post{% endblock %}
 {% block content %}
 
@@ -10,7 +16,7 @@
         <fieldset>
             <center><legend><b> NEW POST</b></legend></center>
             <label>Title:</label>
-            <input type="text" name="title" placeholder="Example: Want to sell my Bicycle">
+            <input type="text" name="title" placeholder="Example: Want to sell my Bicycle" required>
             <label>Type:</label>
             
 
@@ -24,18 +30,18 @@
 
 
             <label>Description:</label>
-            <textarea name="content" rows=3 placeholder="Description"></textarea>
+            <textarea name="content" rows=3 placeholder="Description" required></textarea>
             
         
             
-            <label for="job">Additional Info:</label>
+            <!-- <label for="job">Additional Info:</label>
             
-            <textarea name="add_info" rows=3 placeholder="Example : Some Secondary Contact Details"></textarea>
+            <textarea name="add_info" rows=3 placeholder="Example : Some Secondary Contact Details"></textarea> -->
             
             <label >Image Links:</label>
-            <input type="text" name="links" placeholder="Image links if required (May be drive link)"/>
+            <input type="text" name="links" placeholder="Image link if required (Example: drive link)"/>
         </fieldset>
-        <input type="submit" value="Post" />
+        <input id="square-btn" type="submit" value="Post" />
         
     </form>
 </div>
