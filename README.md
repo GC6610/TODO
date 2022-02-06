@@ -1,7 +1,7 @@
 # The-College-App
 User can create their account on this portal 
 and can use features like
-1. track their day to day tasks 
+1. Track their day to day tasks 
 2. Maintain Coding/Social Profiles
 3. Create post in categories like Buy/Sell/LostandFound/Others
 
@@ -24,10 +24,10 @@ Frontend : Bootstrap<br>
 <img src='img/login.png' width='550'>
 <img src='img/tasks.png' width='550'>
 <img src='img/profile.png' width='550'>
-<img src='img/createpost.png' width='550'>
-<img src='img/buyandsell.png' width='550'>
-<img src='img/lostandfound.png' width='550'>
-<img src='img/others.png' width='550'>
+<img src='img/createpost.PNG' width='550'>
+<img src='img/buyandsell.PNG' width='550'>
+<img src='img/lostandfound.PNG' width='550'>
+<img src='img/others.PNG' width='550'>
 
 
 
