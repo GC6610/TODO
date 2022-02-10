@@ -34,6 +34,7 @@ class Posts(db.Model):
     author=db.Column(db.String(150))
     img_link= db.Column(db.String(100))
     contactid=db.Column(db.String(100))
+    rel_institution = db.Column(db.String(350)) 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
@@ -43,6 +44,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150))
     password = db.Column(db.String(150))
     full_name = db.Column(db.String(150))
+    institution_name= db.Column(db.String(350))
+    gender= db.Column(db.String(20))
     notes = db.relationship('Note')
     profiles = db.relationship('Profiles')
     posts = db.relationship('Posts')

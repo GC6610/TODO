@@ -47,6 +47,8 @@ def sign_up():
         email = request.form.get('email')
         full_name = request.form.get('firstName')
         uname = request.form.get('uname')
+        college_name = request.form.get('college_name')
+        gender = request.form.get('gender')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -68,7 +70,7 @@ def sign_up():
             flash('Password must be at least 7 characters.', category='error')
         else:
             new_user = User(email=email, username=uname,full_name=full_name, password=generate_password_hash(
-                password1, method='sha256'))
+                password1, method='sha256'),gender=gender,institution_name=college_name)
             session['uname'] = uname
             db.session.add(new_user)
             db.session.commit()
@@ -82,5 +84,9 @@ def sign_up():
             db.session.commit()
 
             return redirect(url_for('views.home'))
+    if current_user:
+        return render_template("profile.html",user=current_user)
+        
 
-    return render_template("sign_up.html", user=current_user)
+    
+    return render_template("sign_up.html",user=current_user)

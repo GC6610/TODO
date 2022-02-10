@@ -137,7 +137,7 @@ def inputpost():
 
            
         
-        post = Posts(title=title,content=content,type=type,date=date,img_link=img_link,contactid=current_user.email,author=current_user.full_name,user_id=current_user.id)
+        post = Posts(title=title,content=content,type=type,date=date,img_link=img_link,contactid=current_user.email,author=current_user.full_name,rel_institution=current_user.institution_name,user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
         
@@ -149,7 +149,7 @@ def inputpost():
 @login_required
 def buyorsell():
    
-    posts = Posts.query.filter_by(type="BuyorSell").all()
+    posts = Posts.query.filter_by(type="BuyorSell",rel_institution=current_user.institution_name).all()
     return render_template("posts.html", det=[current_user,posts])
 
 
@@ -157,7 +157,7 @@ def buyorsell():
 @login_required
 def lostandfound():
 
-    posts = Posts.query.filter_by(type="LostandFound").all()
+    posts = Posts.query.filter_by(type="LostandFound",rel_institution=current_user.institution_name).all()
     return render_template("posts.html", det=[current_user,posts])
 
 
@@ -165,7 +165,7 @@ def lostandfound():
 @login_required
 def otherposts():
 
-    posts = Posts.query.filter_by(type="Others").all()
+    posts = Posts.query.filter_by(type="Others",rel_institution=current_user.institution_name).all()
     return render_template("posts.html", det=[current_user,posts])
 
 @views.route('/delete-note', methods=['POST'])

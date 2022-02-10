@@ -131,6 +131,23 @@ button:hover {
     margin-left: auto;
 }
 
+#select-box{
+    height:50px;
+    width:100%;
+    color: #666;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -o-border-radius: 16px;
+    -ms-border-radius: 16px;
+    margin-top:1%;
+    margin-bottom: 4%;
+    text-align: center;
+    background: #f7fafc;
+    border: 1px solid #e5e5e5;
+    -webkit-appearance: listbox !important;
+}
+
 @media (min-width: 576px) {
     .wrapper {
         max-width: 540px;
@@ -467,16 +484,7 @@ p.copy-footer-29 a:hover {
 background: #0568C1;
 }
 
-.logout-btn{
-  color:#fff;
-  display:block;
-  width:100%;
 
-  text-align:right;
-
-  padding-top:5px;
-  padding-bottom:5px;
-}
 
 
 
@@ -706,3 +714,5 @@ i {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+
