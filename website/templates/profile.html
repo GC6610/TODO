@@ -1,14 +1,13 @@
 {% extends "base.html" %} 
 {% block links %}
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
-<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{url_for('static', filename='profile.css')}}"  type="text/css" media="all" />
 
 <!--//Style-CSS -->
 {% endblock %}{% block title %}Profile{% endblock %} {% block
 content %}
 
 
-<form method="POST">
+<form method="POST" class="whole-bg">
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">

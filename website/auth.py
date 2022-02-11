@@ -30,8 +30,11 @@ def login():
                 flash('Incorrect password, try again.', category='error')
         else:
             flash('Email does not exist.', category='error')
-
-    return render_template("login.html", user=current_user)
+    try:
+        name=current_user.full_name
+        return render_template("profile.html",user=current_user)
+    except:
+        return render_template("login.html", user=current_user)
 
 
 @auth.route('/logout')
@@ -85,7 +88,7 @@ def sign_up():
 
             return redirect(url_for('views.home'))
     
-    # print('Gopal')
+    
     try:
         name=current_user.full_name
         return render_template("profile.html",user=current_user)

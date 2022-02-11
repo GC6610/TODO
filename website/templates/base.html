@@ -18,9 +18,9 @@
     <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <!--/Style-CSS -->
     {% block links %}
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
-    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
-    <!-- <link rel="stylesheet" href="{{url_for('static', filename='post.css')}}" type="text/css" media="all" /> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}"  type="text/css" media="all" />
+    
+    
     <!--//Style-CSS -->
     {% endblock %}
     
@@ -30,7 +30,7 @@
   <body class="whole-bg">
 {% block navbar %}
 {% if user.is_authenticated %}
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark ">
       <button
         class="navbar-toggler"
         type="button"

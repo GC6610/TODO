@@ -1,17 +1,15 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 {% block links %}
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
-<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{url_for('static', filename='input-form.css')}}"  type="text/css" media="all" />
 
 <!--//Style-CSS -->
-{% endblock %}
-{% block title %}Create a Post{% endblock %}
-{% block content %}
+{% endblock %}{% block title %}Profile{% endblock %} {% block
+content %}
 
 
 
 
-<div class="form-style-5">
+<div  class="form-style-5 whole-bg">
     <form method="POST">
         <fieldset>
             <center><legend><b> NEW POST</b></legend></center>

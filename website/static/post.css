@@ -11,8 +11,12 @@
   
   .main-container {
     padding: 30px;
+    
   }
   
+  .whole-bg{
+    background: #49a3df;
+}
   
   /* CARDS */
   

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block links %}
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"  type="text/css" media="all" />
-<link rel="stylesheet" href="{{url_for('static', filename='form.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{url_for('static', filename='task.css')}}"  type="text/css" media="all" />
+
 
 <!--//Style-CSS -->
 {% endblock %}
@@ -29,7 +29,11 @@
 
                                             <div class="widget-content-left">
                                                 <div class="widget-heading">{{ note.data }}</div>
+                                                {% if note.date!="None" %}
                                                 <div class="widget-heading">{{ note.date }}</div>
+                                                
+                                                
+                                                {% endif %}
 
                                             </div>
                                             <div class="widget-content-right mr-2">
