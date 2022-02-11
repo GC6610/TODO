@@ -84,9 +84,10 @@ def sign_up():
             db.session.commit()
 
             return redirect(url_for('views.home'))
-    if current_user:
-        return render_template("profile.html",user=current_user)
-        
-
     
-    return render_template("sign_up.html",user=current_user)
+    # print('Gopal')
+    try:
+        name=current_user.full_name
+        return render_template("profile.html",user=current_user)
+    except:
+        return render_template("sign_up.html",user=current_user)
