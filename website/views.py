@@ -8,9 +8,23 @@ import os
 views = Blueprint('views', __name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-@views.route('/tasks', methods=['GET', 'POST'])
+
+@views.route('/dashboard', methods=['GET'])
 @login_required
 def home():
+    quotes=["The gem cannot be polished without friction, nor man perfected without trials.",
+           "Everyone who got where he is has had to begin where he was.",
+           "Remember, you can earn more money, but when time is spent is gone forever.",
+           "It's your aptitude, not just your attitude that determines your ultimate altitude.",
+           "We will either find a way, or make one.",
+           "To reach a great height a person needs to have great depth.",
+           "No dream comes true until you wake up and go to work.",
+           "Wind to thy wings. Light to thy path. Dreams to thy heart."]
+    return render_template("menu.html", details=[current_user,quotes])
+
+@views.route('/tasks', methods=['GET', 'POST'])
+@login_required
+def task():
     if request.method == 'POST':
 
         note = request.form.get('note')

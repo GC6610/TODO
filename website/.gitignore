@@ -1,2 +1,4 @@
 __pycache__/
-task_db.db
+*.pyc
+*.idea
+*task_db.db

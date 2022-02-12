@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% block title %}<title>DashBoard</title>{% endblock%}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link href="//fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    {% block stylesheet %}
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    {% endblock %}
+
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        {% block header %}
+        {% endblock %}
+        <div class="header_img"> 
+            
+            <a href="/profile" class="nav_link"> 
+            <span class="nav_name"><i class='bx bxs-user-circle nav_prof_icon'></i> </span>
+            </a>  
+            
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div> 
+                <a href="/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
+                    <span class="nav_logo-name">Dashboard</span> 
+                </a>
+                <div class="nav_list"> 
+                    <a href="/tasks" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name">Tasks</span> 
+                    </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Users</span> 
+                    </a> 
+                    <a href="/others" class="nav_link"> <i class='bx bxs-camera-plus nav_icon'></i>
+                        <span class="nav_name">Posts</span> 
+                    </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> 
+                        <span class="nav_name">Bookmarks</span> 
+                    </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> 
+                        <span class="nav_name">Internships</span> 
+                    </a>
+                    <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
+                        <span class="nav_name">Hackathons</span> 
+                    </a>
+                     
+                </div>
+            </div> 
+            <a href="/logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i>
+                 <span class="nav_name">SignOut</span> </a>
+        </nav>
+    </div>
+    <!--Container Main start-->
+    <!-- <div class="height-100"> -->
+
+        {% block content%}
+        <h1 class="dash-head">Welcome {{details[0].full_name}}</h1>
+        <div class="type-animator">
+            <span
+               class="txt-rotate"
+               data-period="2000"
+               data-rotate='["The gem cannot be polished without friction, nor man perfected without trials.",
+               "Everyone who got where he is has had to begin where he was.",
+               "Remember, you can earn more money, but when time is spent is gone forever.",
+               "It&apos;s your aptitude, not just your attitude that determines your ultimate altitude.",
+               "We will either find a way, or make one.",
+               "To reach a great height a person needs to have great depth.",
+               "No dream comes true until you wake up and go to work.",
+               "Wind to thy wings. Light to thy path. Dreams to thy heart."]'></span>
+        </div>
+          
+        
+        
+        
+
+        {% endblock %}
+
+<!--         
+    </div> -->
+
+    {% block script %}
+    <script type="text/javascript" src="{{ url_for('static', filename='navbar.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>

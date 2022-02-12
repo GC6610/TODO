@@ -16,18 +16,7 @@ and can use features like
 <br>
 Backend : Flask<br>
 Frontend : Bootstrap<br>
-<br>
 
-<br>
-
-<img src='img/signup.png' width='550'>
-<img src='img/login.png' width='550'>
-<img src='img/tasks.png' width='550'>
-<img src='img/profile.png' width='550'>
-<img src='img/createpost.PNG' width='550'>
-<img src='img/buyandsell.PNG' width='550'>
-<img src='img/lostandfound.PNG' width='550'>
-<img src='img/others.PNG' width='550'>
 
 
 
