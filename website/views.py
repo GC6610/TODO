@@ -55,6 +55,7 @@ def task():
                 new_note = Note(data=note, date=deadline,user_id=current_user.id)
                 db.session.add(new_note)
                 db.session.commit()
+                
                 # flash('Note added!', category='success')
         except:
             if len(note) < 1:
@@ -64,6 +65,7 @@ def task():
                 new_note = Note(data=note, date="None",user_id=current_user.id)
                 db.session.add(new_note)
                 db.session.commit()
+                note=""
 
 
     return render_template("home.html", user=current_user)
