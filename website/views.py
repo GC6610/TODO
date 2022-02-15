@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note,User,Profiles,Posts
+from .models import Bookmark, Note,User,Profiles,Posts
 from . import db
 import json
 from datetime import datetime, timedelta
@@ -192,6 +192,47 @@ def delete_note():
     if note:
         if note.user_id == current_user.id:
             db.session.delete(note)
+            db.session.commit()
+
+    return jsonify({})
+
+
+
+#bookmarks views and forms
+
+@views.route('/createbookmark', methods=['GET','POST'])
+@login_required
+def inputbookmark():
+    if request.method=='POST':
+        
+        data = request.form.get('content')
+        page_link=request.form.get('links')
+        if data and page_link:
+            bookmark = Bookmark(data=data,page_link=page_link,user_id=current_user.id)
+            db.session.add(bookmark)
+            db.session.commit()
+        else:
+            flash("Fill all the required credentials")
+        
+
+        
+    return render_template("createbookmark.html", user=current_user)
+
+@views.route('/bookmarks', methods=['GET'])
+@login_required
+def viewbookmark():
+    return render_template("bookmark.html", user=current_user)
+
+
+@views.route('/delete-bookmark', methods=['POST'])
+def delete_bookmark():
+    bookmark = json.loads(request.data)
+    print('------------------------------------------------------------------')
+    bookmarkId = bookmark['bookId']
+    bookmark = Bookmark.query.get(bookmarkId)
+    if bookmark:
+        if bookmark.user_id == current_user.id:
+            db.session.delete(bookmark)
             db.session.commit()
 
     return jsonify({})

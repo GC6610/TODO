@@ -1,0 +1,11 @@
+#card-box{
+    margin-top:2%;
+    
+    
+}
+
+#card-inside{
+    background-color: rgb(95, 119, 111);
+    border-width: 5px;
+    color:azure
+}

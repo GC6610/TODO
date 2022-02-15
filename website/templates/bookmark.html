@@ -1,0 +1,57 @@
+{% extends "menu.html" %}
+{% block title %}<title>Bookmarks</title>{% endblock%}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{url_for('static', filename='bookmark.css')}}"  type="text/css" media="all" />
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+<!--//Style-CSS -->
+{% endblock %}
+{% block header %}
+
+<div class="header_img"> 
+            
+  <a href="/createbookmark" class="nav_link"> 
+  <span class="nav_name"><i class='bx bxs-plus-square nav_prof_icon'></i> </span>
+  </a>  
+  
+</div>
+<div class="header_img"> 
+            
+  <a href="/bookmarks" class="nav_link">
+  <span class="nav_name"><i class='bx bx-bookmark nav_prof_icon'></i> </span>
+  </a>  
+  
+</div>
+
+        {% endblock %}
+
+{% block content %}
+<div class="row">
+  {% for bookmark in user.bookmarks %}
+  <div class="col-sm-6" id="card-box">
+    <div class="card text-center" id="card-inside">
+      <div class="card-body">
+        <h5 class="card-title">{{bookmark.data}}</h5>
+        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+        <a href={{bookmark.page_link}} class="btn btn-primary">Page Link</a>
+        <a>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <button type="button" class="close" onClick="deletebookmark({{bookmark.id}});">
+          <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+        </button>
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %} 

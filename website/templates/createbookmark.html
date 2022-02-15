@@ -1,0 +1,58 @@
+{% extends "menu.html" %}
+{% block title %}<title>Create Bookmark</title>{% endblock%}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{url_for('static', filename='input-form.css')}}"  type="text/css" media="all" />
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+
+
+<!--//Style-CSS -->
+{% endblock %}
+
+{% block header %}
+
+<div class="header_img"> 
+            
+    <a href="/createbookmark" class="nav_link"> 
+    <span class="nav_name"><i class='bx bxs-plus-square nav_prof_icon'></i> </span>
+    </a>  
+    
+  </div>
+  <div class="header_img"> 
+              
+    <a href="/bookmarks" class="nav_link">
+    <span class="nav_name"><i class='bx bx-bookmark nav_prof_icon'></i> </span>
+    </a>  
+    
+  </div>
+        {% endblock %}
+
+{% block content %}
+    
+
+
+
+
+<div  class="form-style-5 whole-bg">
+    <form method="POST">
+        <fieldset>
+            <center><legend><b> NEW BOOKMARK</b></legend></center>
+
+            <label>Description:</label>
+            <textarea name="content" rows=2 placeholder="Bookmark Description" required></textarea>
+            <label >Page Links:</label>
+            <input type="text" name="links" placeholder="Page Link" required/>
+        </fieldset>
+        <input id="square-btn" type="submit" value="Post" />
+        
+    </form>
+</div>
+
+{% endblock %}

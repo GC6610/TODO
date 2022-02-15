@@ -9,6 +9,17 @@ class Note(db.Model):
     date = db.Column(db.String(30))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class Bookmark(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data = db.Column(db.String(500))
+    page_link = db.Column(db.String(500))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+
+
+
+
 class Profiles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     codechef = db.Column(db.String(200))
@@ -49,4 +60,5 @@ class User(db.Model, UserMixin):
     notes = db.relationship('Note')
     profiles = db.relationship('Profiles')
     posts = db.relationship('Posts')
+    bookmarks = db.relationship('Bookmark')
 
