@@ -2,7 +2,7 @@
 {% block title %}<title>Posts</title>{% endblock%}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{url_for('static', filename='post.css')}}"  type="text/css" media="all" />
-<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
     <link
@@ -10,6 +10,7 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
+
 
 
 <!--//Style-CSS -->
@@ -41,74 +42,37 @@
 <div class="header_img"> 
             
   <a href="/others" class="nav_link"> 
-  <span class="nav_name"><i class='fa fa-globe nav_prof_icon'></i> </span>
+  <span class="nav_name"><i class='bx bx-globe nav_prof_icon'></i> </span>
   </a>  
   
 </div>
-        {% endblock %}
+{% endblock %}
 
 {% block content %}
     
 
     <div class="main-container">
+      <div>&nbsp;</div>
         {% for post in det[1][::-1] %}
-        {% if post.type=="BuyorSell" %}
-        <!-- buyandsell -->
-        <div class="cards">
-          <div class="card card-1">
-            <div class="card__icon"><i class="fa fa-shopping-cart"></i></div>
-            <p class="card__exit">{{post.date}}</p>
-            <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
-            <p class="content">{{post.content}}</p>
+        <div class="card text-center">
+          <div class="card-header">
+            {{(post.title).upper()}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a></h5>
+            <p class="card-text">{{post.content}}</p>
             {% if post.img_link %}
-            <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
+            <a href={{post.img_link}} class="btn btn-primary">Image Link</a>
             {% endif %}
-            <div>Posted By : {{post.author}} </div>
-            <p class="card__apply">
-              <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
-            </p>
           </div>
-        
+          <div class="card-footer text-muted">
+            <table style="width:100%"><tr>
+              <th>Posted on :{{post.date}}</th>
+              <th>Author : {{post.author}}</th>
+            </tr></table>
+          </div>
         </div>
-        {% endif %}
-        {% if post.type=="LostandFound" %}
-        <!-- LostandFound -->
-        <div class="cards">
-            <div class="card card-1">
-              <div class="card__icon"><i class="fa fa-search"></i></div>
-              <p class="card__exit">{{post.date}}</p>
-              <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
-              <p class="content">{{post.content}}</p>
-              {% if post.img_link %}
-              <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
-              {% endif %}
-              <div>Posted By : {{post.author}} </div>
-              <p class="card__apply">
-                <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
-              </p>
-            </div>
-          
-          </div>
-          {% endif %}
-          {% if post.type=="Others" %}
-          <!-- Others -->
-          <div class="cards">
-            <div class="card card-1">
-              <div class="card__icon"><i class="fa fa-globe"></i></div>
-              <p class="card__exit">{{post.date}}</p>
-              <center><h2 class="card__title">{{(post.title).upper()}}</h2></center>
-              <p class="content">{{post.content}}</p>
-              {% if post.img_link %}
-              <a class="btn btn-primary square-btn" href={{post.img_link}} role="button">Image Link</a>
-              {% endif %}
-              <div>Posted By : {{post.author}} </div>
-              <p class="card__apply">
-                <a class="card__link" href = {{"mailto: "+post.contactid}}>Contact Author &nbsp; &nbsp;<i class="fa fa-envelope"></i></a>
-              </p>
-            </div>
-          
-          </div>
-          {% endif %}
+        
           {% endfor %}
       </div>
 
