@@ -1,5 +1,5 @@
 {% extends "menu.html" %}
-{% block title %}<title>Posts</title>{% endblock%}
+{% block title %}<title>My Posts</title>{% endblock%}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{url_for('static', filename='post.css')}}"  type="text/css" media="all" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -49,11 +49,11 @@
 
 <div class="header_img"> 
             
-  <a href="/myposts" class="nav_link"> 
-  <span class="nav_name"><i class='bx bx-fullscreen nav_prof_icon'></i> </span>
-  </a>  
-  
-</div>
+    <a href="/myposts" class="nav_link"> 
+    <span class="nav_name"><i class='bx bx-fullscreen nav_prof_icon'></i> </span>
+    </a>  
+    
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -75,11 +75,10 @@
           </div>
           <div class="card-footer text-muted">
             <table style="width:100%"><tr>
-              {% if post.user_id==det[0].id%}
-              <th><button type="button" class="close" onClick="deletePost({{post.id}});">
-                <span aria-hidden="true"><i class="fa fa-trash"></i></span>
-              </button></th>
-              {% endif %}
+                <th><button type="button" class="close" onClick="deletePost({{post.id}});">
+                    <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+                  </button></th>
+                  <th>Category : {{post.type}}</th>
               <th>Posted on :{{post.date}}</th>
               <th>Author : {{post.author}}</th>
             </tr></table>

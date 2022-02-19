@@ -68,7 +68,7 @@ def task():
                 note=""
 
 
-    return render_template("home.html", user=current_user)
+    return render_template("tasks.html", user=current_user)
 
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -183,6 +183,25 @@ def otherposts():
 
     posts = Posts.query.filter_by(type="Others",rel_institution=current_user.institution_name).all()
     return render_template("posts.html", det=[current_user,posts])
+
+@views.route('/myposts', methods=['GET'])
+@login_required
+def myposts():
+   
+    posts = Posts.query.filter_by(user_id=current_user.id).all()
+    return render_template("myposts.html", det=[current_user,posts])
+
+@views.route('/delete-post', methods=['POST'])
+def delete_post():
+    post = json.loads(request.data)
+    postId = post['postId']
+    post = Posts.query.get(postId)
+    if post:
+        if post.user_id == current_user.id:
+            db.session.delete(post)
+            db.session.commit()
+
+    return jsonify({})
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():

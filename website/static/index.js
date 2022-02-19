@@ -17,3 +17,13 @@ function deletebookmark(bookId) {
     window.location.href = "/bookmarks";
   });
 }
+
+
+function deletePost(postId) {
+  fetch("/delete-post", {
+    method: "POST",
+    body: JSON.stringify({ postId: postId }),
+  }).then((_res) => {
+    window.location.href = "/myposts";
+  });
+}
