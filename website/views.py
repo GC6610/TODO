@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Bookmark, Note,User,Profiles,Posts
+from .models import Bookmark, Note,User,Profiles,Posts ,hackathons, internships_job
 from . import db
 import json
 from datetime import datetime, timedelta
@@ -9,6 +9,7 @@ views = Blueprint('views', __name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
+###           Home Page        ###
 @views.route('/dashboard', methods=['GET'])
 @login_required
 def home():
@@ -21,6 +22,9 @@ def home():
            "No dream comes true until you wake up and go to work.",
            "Wind to thy wings. Light to thy path. Dreams to thy heart."]
     return render_template("menu.html", details=[current_user,quotes])
+###           Home Page Ends       ###
+
+###           TaskPage         ###
 
 @views.route('/tasks', methods=['GET', 'POST'])
 @login_required
@@ -56,7 +60,7 @@ def task():
                 db.session.add(new_note)
                 db.session.commit()
                 
-                # flash('Note added!', category='success')
+                
         except:
             if len(note) < 1:
                 flash('Note is too short!', category='error')
@@ -70,6 +74,22 @@ def task():
 
     return render_template("tasks.html", user=current_user)
 
+
+@views.route('/delete-note', methods=['POST'])
+def delete_note():
+    note = json.loads(request.data)
+    noteId = note['noteId']
+    note = Note.query.get(noteId)
+    if note:
+        if note.user_id == current_user.id:
+            db.session.delete(note)
+            db.session.commit()
+
+    return jsonify({})
+
+###           TaskPage  Ends      ###
+
+###           Profile Page        ###
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
@@ -136,8 +156,9 @@ def profile():
     db.session.commit()
 
     return render_template("profile.html", user=current_user)
+###           Profile Page Ends       ###
 
-
+###           Post        ###
 @views.route('/inputpost', methods=['GET','POST'])
 @login_required
 def inputpost():
@@ -203,21 +224,10 @@ def delete_post():
 
     return jsonify({})
 
-@views.route('/delete-note', methods=['POST'])
-def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
-            db.session.commit()
 
-    return jsonify({})
+###           Post Ends        ###
 
-
-
-#bookmarks views and forms
+###    bookmarks views and forms      ###
 
 @views.route('/createbookmark', methods=['GET','POST'])
 @login_required
@@ -255,3 +265,124 @@ def delete_bookmark():
             db.session.commit()
 
     return jsonify({})
+
+###    bookmarks views and forms  Ends   ###
+
+
+###    Internship/  views and forms      ###
+
+@views.route('/internships', methods=['GET'])
+@login_required
+def internship():
+
+    internships = internships_job.query.filter_by(type="INTERN").all()
+    return render_template("job_internships.html", det=[current_user,internships])
+
+
+
+
+@views.route('/jobs', methods=['GET'])
+@login_required
+def fulltime_offers():
+
+    jobs = internships_job.query.filter_by(type="FULL TIME").all()
+    return render_template("job_internships.html", det=[current_user,jobs])
+
+@views.route('/jobinternform', methods=['GET', 'POST'])
+@login_required
+def jobinternform():
+    if request.method == 'POST':
+
+        company = request.form.get('org')
+        type =request.form.get('type')
+        role=request.form.get('role')
+        stipend_sal=request.form.get('stipend')
+        duration= request.form.get('duration')
+        role_desc=request.form.get('desc')
+        deadline=request.form.get('deadline')
+        extra_benefits=request.form.get('extras')
+        reg_link=request.form.get('link')
+        open_to=request.form.get('author')
+        
+        try:
+            month=['January','February','March','April','May','June','July','August','September','October','November','December']
+            deadline=deadline.split('T')
+            opp_date=deadline[0].split('-')
+            opp_year=opp_date[0]
+            opp_month=month[int(opp_date[1])-1]
+            opp_day=opp_date[2]
+            opp_time=deadline[1]
+
+            
+            deadline = opp_time + ' ' + opp_day + ' ' + opp_month + ' ' + opp_year
+            new_opp = internships_job(company=company,type=type,role=role,stipend_sal=stipend_sal,duration=duration,role_desc=role_desc,deadline=deadline,extra_benefits=extra_benefits,author=current_user.full_name,reg_link=reg_link,open_to=open_to,user_id=current_user.id)
+            db.session.add(new_opp)
+            db.session.commit()
+                
+                
+        except:
+            flash("Error While Submission ",category="error")
+            
+
+               
+
+
+    return render_template("job_internshipform.html", user=current_user)
+
+
+###    Internship  views and forms  Ends    ###
+
+###    Hackathon  views and forms      ###
+
+@views.route('/hackathon', methods=['GET'])
+@login_required
+def hackathon():
+
+    hackathons_ = hackathons.all()
+    return render_template("hackathons.html", det=[current_user,hackathons_])
+
+
+@views.route('/hackathonform', methods=['GET', 'POST'])
+@login_required
+def hackathonform():
+    if request.method == 'POST':
+        
+        title = request.form.get('title')
+        organization = request.form.get('org')
+        content =request.form.get('content')
+        deadline=request.form.get('deadline')
+        fromdate=request.form.get('fromdate')
+        todate=request.form.get('todate')
+        open_to=request.form.get('open_to')
+        reg_link=request.form.get('link')
+        
+        try:
+            def daycal(deadline):
+                month=['January','February','March','April','May','June','July','August','September','October','November','December']
+                deadline=deadline.split('T')
+                opp_date=deadline[0].split('-')
+                opp_year=opp_date[0]
+                opp_month=month[int(opp_date[1])-1]
+                opp_day=opp_date[2]
+                opp_time=deadline[1]
+
+                
+                return opp_time + ' ' + opp_day + ' ' + opp_month + ' ' + opp_year
+            deadline=daycal(deadline)
+            fromdate=daycal(fromdate)
+            todate=daycal(todate)
+            new_hackathon = hackathons(organization=organization,title=title,content=content,deadline=deadline,fromdate=fromdate,todate=todate,author=current_user.full_name,reg_link=reg_link,open_to=open_to,user_id=current_user.id)
+            db.session.add(new_hackathon)
+            db.session.commit()
+                
+                
+        except:
+            flash("Error While Submission ",category="error")
+            
+
+               
+
+
+    return render_template("hackathonform.html", user=current_user)
+
+###    Hackathon  views and forms  Ends    ###
