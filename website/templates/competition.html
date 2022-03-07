@@ -1,0 +1,70 @@
+{% extends "menu.html" %}
+{% block title %}<title>competitions</title>{% endblock%}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{url_for('static', filename='competition.css')}}"  type="text/css" media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+<!--//Style-CSS -->
+{% endblock %}
+{% block header %}
+
+<div class="header_img"> 
+            
+  <a href="/competition" class="nav_link"> 
+  <span class="nav_name"><i class='bx bx-trophy nav_prof_icon'></i> </span>
+  </a>  
+  
+</div>
+<div class="header_img"> 
+            
+  <a href="/competitionform" class="nav_link"> 
+  <span class="nav_name"><i class='bx bxs-plus-square nav_prof_icon'></i> </span>
+  </a>  
+  
+</div>
+
+{% endblock %}
+
+{% block content %}
+    
+
+    <div class="main-container">
+      <div>&nbsp;</div>
+        {% for competition in det[1][::-1] %}
+        <div class="card text-center">
+          <div class="card-header">
+            {{competition.organization}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a>{{competition.title}} &nbsp; &nbsp;</a></h5>
+            <p class="card-text">{{competition.content}}</p>
+            {% if competition.reg_link %}
+            <a href={{competition.reg_link}} class="btn btn-primary">Registration Link</a>
+            {% endif %}
+          </div>
+          <div class="card-footer text-muted">
+            <table style="width:100%"><tr>
+              {% if competition.user_id==det[0].id%}
+              <th><button type="button" class="close" onClick="deleteHack({{competition.id}});">
+                <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+              </button></th>
+              {% endif %}
+              <th>Dealine  :{{competition.deadline}}</th>
+              <th>From  :{{competition.fromdate}}</th>
+              <th>To : {{competition.todate}}</th>
+              <th>Open for : {{competition.open_to}}</th>
+            </tr></table>
+          </div>
+        </div>
+        
+          {% endfor %}
+      </div>
+
+    {% endblock %}    

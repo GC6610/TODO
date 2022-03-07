@@ -48,7 +48,7 @@ class Posts(db.Model):
     rel_institution = db.Column(db.String(350)) 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-class hackathons(db.Model):
+class competitions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200))
     content = db.Column(db.String(10000))

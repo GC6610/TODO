@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Bookmark, Note,User,Profiles,Posts ,hackathons, internships_job
+from .models import Bookmark, Note,User,Profiles,Posts ,competitions, internships_job
 from . import db
 import json
 from datetime import datetime, timedelta
@@ -279,8 +279,6 @@ def internship():
     return render_template("job_internships.html", det=[current_user,internships])
 
 
-
-
 @views.route('/jobs', methods=['GET'])
 @login_required
 def fulltime_offers():
@@ -332,19 +330,21 @@ def jobinternform():
 
 ###    Internship  views and forms  Ends    ###
 
-###    Hackathon  views and forms      ###
+###   Competition  views and forms      ###
 
-@views.route('/hackathon', methods=['GET'])
+@views.route('/competition', methods=['GET'])
 @login_required
-def hackathon():
+def competition():
+    
+    competitions_ =competitions.query.all()
+    
 
-    hackathons_ = hackathons.all()
-    return render_template("hackathons.html", det=[current_user,hackathons_])
+    return render_template("competition.html", det=[current_user,competitions_])
 
 
-@views.route('/hackathonform', methods=['GET', 'POST'])
+@views.route('/competitionform', methods=['GET', 'POST'])
 @login_required
-def hackathonform():
+def competitionform():
     if request.method == 'POST':
         
         title = request.form.get('title')
@@ -371,8 +371,8 @@ def hackathonform():
             deadline=daycal(deadline)
             fromdate=daycal(fromdate)
             todate=daycal(todate)
-            new_hackathon = hackathons(organization=organization,title=title,content=content,deadline=deadline,fromdate=fromdate,todate=todate,author=current_user.full_name,reg_link=reg_link,open_to=open_to,user_id=current_user.id)
-            db.session.add(new_hackathon)
+            new_competition = competitions(organization=organization,title=title,content=content,deadline=deadline,fromdate=fromdate,todate=todate,author=current_user.full_name,reg_link=reg_link,open_to=open_to,user_id=current_user.id)
+            db.session.add(new_competition)
             db.session.commit()
                 
                 
@@ -383,6 +383,6 @@ def hackathonform():
                
 
 
-    return render_template("hackathonform.html", user=current_user)
+    return render_template("competitionform.html", user=current_user)
 
-###    Hackathon  views and forms  Ends    ###
+###   competition  views and forms  Ends    ###
