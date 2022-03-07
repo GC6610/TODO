@@ -1,0 +1,75 @@
+{% extends "menu.html" %}
+{% block title %}<title>Jobs & Internships</title>{% endblock%}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{url_for('static', filename='jobintern.css')}}"  type="text/css" media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+<!--//Style-CSS -->
+{% endblock %}
+{% block header %}
+
+<div class="header_img">           
+  <a href="/jobs" class="nav_link"> 
+  <span class="nav_name"><i class='bx bx-building-house nav_prof_icon' ></i></i> </span>
+  </a>  
+</div>
+
+<div class="header_img">         
+    <a href="/internships" class="nav_link"> 
+    <span class="nav_name"><i class='bx bxs-bulb nav_prof_icon'></i> </span>
+    </a>  
+  </div>
+
+<div class="header_img"> 
+  <a href="/jobinternform" class="nav_link"> 
+  <span class="nav_name"><i class='bx bxs-plus-square nav_prof_icon'></i> </span>
+  </a>  
+  
+</div>
+
+{% endblock %}
+
+{% block content %}
+    
+
+    <div class="main-container">
+      <div>&nbsp;</div>
+        {% for jobint in det[1][::-1] %}
+        <div class="card text-center">
+          <div class="card-header">
+            {{jobint.company}}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a>{{jobint.role}} &nbsp; &nbsp;</a></h5>
+            <p class="card-text">{{jobint.role_desc}}</p>
+            <h5 class="card-text"><a>Salary : {{jobint.stipend_sal}} &nbsp; &nbsp;</a></h5>
+            <p class="card-text">Additional Benefits : {{jobint.extra_benefits}}</p>
+            {% if jobint.reg_link %}
+            <a href={{jobint.reg_link}} class="btn btn-primary">Registration Link</a>
+            {% endif %}
+          </div>
+          <div class="card-footer text-muted">
+            <table style="width:100%"><tr>
+              {% if jobint.user_id==det[0].id%}
+              <th><button type="button" class="close" onClick="deleteJob({{jobint.id}});">
+                <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+              </button></th>
+              {% endif %}
+              <th>Dealine  :{{jobint.deadline}}</th>
+              <th>Duration  :{{jobint.duration}}</th>
+              <th>Open for : {{jobint.open_to}}</th>
+            </tr></table>
+          </div>
+        </div>
+        
+          {% endfor %}
+      </div>
+
+    {% endblock %}    

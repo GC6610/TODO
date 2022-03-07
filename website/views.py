@@ -256,7 +256,7 @@ def viewbookmark():
 @views.route('/delete-bookmark', methods=['POST'])
 def delete_bookmark():
     bookmark = json.loads(request.data)
-    print('------------------------------------------------------------------')
+    
     bookmarkId = bookmark['bookId']
     bookmark = Bookmark.query.get(bookmarkId)
     if bookmark:
@@ -327,8 +327,19 @@ def jobinternform():
 
     return render_template("job_internshipform.html", user=current_user)
 
+@views.route('/delete-jobintern', methods=['POST'])
+def delete_job():
+    job = json.loads(request.data)
+    
+    jobId = job['jobId']
+    job = internships_job.query.get(jobId)
+    if job:
+        if job.user_id == current_user.id:
+            db.session.delete(job)
+            db.session.commit()
 
-###    Internship  views and forms  Ends    ###
+    return jsonify({})
+###    Internship & Jobs  views and forms  Ends    ###
 
 ###   Competition  views and forms      ###
 
@@ -384,5 +395,21 @@ def competitionform():
 
 
     return render_template("competitionform.html", user=current_user)
+
+
+
+@views.route('/delete-competition', methods=['POST'])
+def delete_competition():
+    competition = json.loads(request.data)
+    
+    competitionId = competition['compId']
+    competition = competitions.query.get(competitionId)
+    if competition:
+        if competition.user_id == current_user.id:
+            db.session.delete(competition)
+            db.session.commit()
+
+    return jsonify({})
+
 
 ###   competition  views and forms  Ends    ###

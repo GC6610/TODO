@@ -52,7 +52,7 @@
           <div class="card-footer text-muted">
             <table style="width:100%"><tr>
               {% if competition.user_id==det[0].id%}
-              <th><button type="button" class="close" onClick="deleteHack({{competition.id}});">
+              <th><button type="button" class="close" onClick="deleteComp({{competition.id}});">
                 <span aria-hidden="true"><i class="fa fa-trash"></i></span>
               </button></th>
               {% endif %}

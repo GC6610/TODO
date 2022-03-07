@@ -27,3 +27,22 @@ function deletePost(postId) {
     window.location.href = "/myposts";
   });
 }
+
+
+function deleteComp(compId) {
+  fetch("/delete-competition", {
+    method: "POST",
+    body: JSON.stringify({ compId: compId }),
+  }).then((_res) => {
+    window.location.href = "/competition";
+  });
+}
+
+function deleteJob(jobId) {
+  fetch("/delete-jobintern", {
+    method: "POST",
+    body: JSON.stringify({ jobId: jobId }),
+  }).then((_res) => {
+    window.location.href = "/jobs";
+  });
+}

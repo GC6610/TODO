@@ -1,11 +1,12 @@
 # The-College-App
 User can create their account on this portal 
-and can use features like
+and can use features like : 
 1. Track their day to day tasks 
 2. Maintain Coding/Social Profiles
 3. Create post in categories like Buy/Sell/LostandFound/Others
-4. Check available internship/fulltime opportunities
-5. To track upcoming hackathons
+4. Check available Internship/Fulltime opportunities or Posting/Deleting the opportunities for the same
+5. To track upcoming Hackathons , Competitions (in any field) or Posting/Deleting opportunities for the same
+6. Adding Bookmarks 
 
 ## Setting up the Server
 - Should have Python 3 installed
@@ -19,10 +20,12 @@ and can use features like
 <br>
 Backend : Flask<br>
 Frontend : Bootstrap<br>
+Database : MySQL<br>
 
 ## Progress
 - Backend Part is done 
-- Currently working on Front-End part
+- Frontend Part is done
+- Currently working on improving UI
 - For contributing to the project can do pull request and will be taken into consideration if found useful 
 
 

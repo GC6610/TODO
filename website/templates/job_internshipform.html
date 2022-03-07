@@ -1,0 +1,84 @@
+{% extends "menu.html" %}
+{% block title %}<title>New Competition</title>{% endblock%}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{url_for('static', filename='jobinternform.css')}}"  type="text/css" media="all" />
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}" type="text/css" media="all" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+
+
+
+<!--//Style-CSS -->
+{% endblock %}
+
+{% block header %}
+
+<div class="header_img">           
+    <a href="/jobs" class="nav_link"> 
+    <span class="nav_name"><i class='bx bx-building-house nav_prof_icon' ></i> </span>
+    </a>  
+  </div>
+  
+  <div class="header_img">         
+      <a href="/internships" class="nav_link"> 
+      <span class="nav_name"><i class='bx bxs-bulb nav_prof_icon'></i> </span>
+      </a>  
+    </div>
+  
+  <div class="header_img"> 
+    <a href="/jobinternform" class="nav_link"> 
+    <span class="nav_name"><i class='bx bxs-plus-square nav_prof_icon'></i> </span>
+    </a>  
+    
+  </div>
+
+{% endblock %}
+
+{% block content %}
+    
+
+
+
+
+<div  class="form-style-5 whole-bg">
+    <form method="POST">
+        <fieldset>
+            <center><legend><b> NEW OPPORTUNITY</b></legend></center>
+            
+            <label>Organization Name :</label>
+            <input type="text" name="org" placeholder="Example: Arts Club / Google / Cricket Association " required>
+            <label>Role : </label>
+            <input type="text" name="role" placeholder="Example: SDE/ Coach / Product Manager " required>
+            <label>Type:</label>
+            <select name="type">
+                <option  value="FULL TIME">FULL TIME</option>
+                <option  value="INTERN">INTERN</option>
+            </select>
+            <label>Role Description :</label>
+            <textarea name="desc" rows=3 placeholder="Description" required></textarea>
+            <label>Deadline :</label>
+            <input type="datetime-local" name="deadline"/>
+            <label>Duration : </label>
+            <input type="text" name="duration" placeholder="Example: 4 Weeks / 8 Weeks / Contract Based / Freelancing  " required>
+            <label>Open to :</label>
+            <input type="text" name="open_to" placeholder="Example: All years/ 2nd Years / Categories etc " required>                          
+            <label>Salary : </label>
+            <input type="text" name="stipend" placeholder="Example: 1 Lakh per Month / 26 Lakh CTC " required>
+            <label >Extra Benefits : </label>
+            
+            <textarea name="extras" rows=3 placeholder="Example : Food/Accomodation/Travel/ESOPs"></textarea> 
+            
+            <label >Registration Link:</label>
+            <input type="text" name="link" placeholder="Registration link if required (Example: Gform/ Webpage Link)" required>
+        </fieldset>
+        <input id="square-btn" type="submit" value="Post" />
+        
+    </form>
+</div>
+
+{% endblock %}
